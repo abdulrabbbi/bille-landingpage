@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand accent to exactly match the provided green */
+  --color-accent: #A3FF00;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
