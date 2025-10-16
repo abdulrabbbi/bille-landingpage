@@ -10,9 +10,17 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="bg-[#333] text-white py-4 px-6 flex items-center justify-between rounded-xl max-w-screen-xl mx-auto">
-      <Link to="/" aria-label="Go to home" className="flex items-center space-x-2">
-        <img src={"/icons/Frame.png"} alt="BALLIE logo" className="h-8 w-8" />
+    <nav className="bg-[#231f20] text-white py-4 px-6 flex items-center justify-between rounded-xl max-w-screen-xl mx-auto">
+      <Link
+        to="/"
+        aria-label="Go to home"
+        className="flex items-center space-x-2"
+      >
+        <img
+          src="/images/Logo.jpeg"
+          alt="BALLIE logo"
+          className="h-10 w-auto object-contain md:h-12 lg:h-14 transition-all duration-300"
+        />
         <span className="text-lg font-semibold">BALLIE</span>
       </Link>
 
