@@ -31,7 +31,17 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
           {/* Logo + Brand */}
           <div className="flex items-center space-x-2">
-            <img src="/icons/Frame.png" alt="BALLIE Logo" className="h-8 w-8" />
+            <div className="flex items-center space-x-3 bg-lime-400 px-6 py-4 rounded-xl">
+              <div className="shadow-xl shadow-accent p-1 rounded-md flex items-center justify-center">
+                <img
+                  src="/images/logoTransparent.png"
+                  alt="BALLIE logo"
+                  className="h-10 w-auto object-contain md:h-12 lg:h-14 transition-all duration-300"
+                />
+              </div>
+      
+            </div>
+
             <span className="font-semibold text-lg">BALLIE</span>
           </div>
 
