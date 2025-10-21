@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #f8fafc;
+  --surface: #ffffff;
+  --surface-2: #f3f4f6;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #e5e7eb;
+
+  /* Brand */
+  --primary: #10b981; /* emerald-500 */
+  --brand-ghost: rgba(16,185,129,0.14);
+
+  /* Shadows */
+  --shadow-soft: 0 1px 2px rgba(16, 24, 40, 0.06);
+  --shadow-card: 0 8px 24px rgba(16, 24, 40, 0.08);
+
+  /* Radii */
+  --radius: 14px;
+  --radius-sm: 10px;
+
+  /* Transitions */
+  --ts: 150ms ease;
+}
+
+/* Support both strategies:
+   - [data-theme="dark"] (our ThemeSwitch)
+   - .dark (Tailwind dark mode with class) */
+:root[data-theme="dark"],
+:root.dark {
+  --bg: #0b1220;
+  --surface: #0f172a;
+  --surface-2: #111827;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --border: #1f2937;
+
+  --primary: #22d3ee; /* cyan-400 */
+  --brand-ghost: rgba(34, 211, 238, 0.18);
+
+  --shadow-soft: 0 1px 2px rgba(0, 0, 0, 0.45);
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* ================================
+   BASE / RESET
+==================================*/
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family:
+    ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Inter,
+    "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--primary) 20%, transparent);
+}
+
+/* Scrollbar (webkit) */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--text) 8%, transparent);
+  border-radius: 999px;
+}
+*::-webkit-scrollbar-track { background: transparent; }
+
+/* Focus ring */
+:where(button, [role="button"], a, input, select, textarea):focus {
+  outline: 2px solid color-mix(in srgb, var(--primary) 55%, transparent);
+  outline-offset: 2px;
+}
+
+/* Page gutter used in AdminLayout */
+.page { padding: 16px 0 32px; }
+
+/* ================================
+   SHARED UI PRIMITIVES
+   - relied on by modules across the app
+==================================*/
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+}
+
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  transition: border-color var(--ts), background-color var(--ts);
+}
+.input::placeholder { color: color-mix(in srgb, var(--muted) 80%, transparent); }
+.input:focus {
+  border-color: color-mix(in srgb, var(--primary) 60%, var(--border));
+  outline: none;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 0;
+  background: var(--primary);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: 0 1px 0 rgba(0,0,0,.03);
+  transition: transform .06s ease, filter .18s ease;
+}
+.btn:hover { filter: brightness(1.05); }
+.btn:active { transform: translateY(1px) scale(.99); }
+.btn[disabled] { opacity: .6; cursor: not-allowed; }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: 10px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+  transition: background-color var(--ts), border-color var(--ts);
+}
+.btn-ghost:hover { background: var(--surface-2); }
+
+.text-muted { color: var(--muted); }
+
+/* Table helpers */
+table th, table td { vertical-align: middle; }
+table thead { background: color-mix(in srgb, var(--surface) 85%, transparent); }
+
+/* Utility for soft separators inside cards */
+.hr {
+  height: 1px;
+  background: var(--border);
+  width: 100%;
+}
+
+/* Optional shimmer (used by some skeletons) */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skel {
+  border-radius: 8px;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--surface-2) 90%, transparent) 0%,
+    color-mix(in srgb, var(--surface-2) 70%, transparent) 50%,
+    color-mix(in srgb, var(--surface-2) 90%, transparent) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite linear;
+}
